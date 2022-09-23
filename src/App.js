@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import useBearStore from './store';
+
+function BearCounter() {
+    const bears = useBearStore((state) => state.bears);
+    return <h1>{bears} around here ...</h1>;
+}
+
+function Grow() {
+    const increasePopulation = useBearStore(
+        (state) => state.increasePopulation
+    );
+    return <button onClick={increasePopulation}>one up</button>;
+}
+
+function Shrink() {
+    const decreasePopulation = useBearStore(
+        (state) => state.decreasePopulation
+    );
+    return <button onClick={decreasePopulation}>down up</button>;
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <BearCounter />
+            <Grow />
+            <Shrink />
+        </>
+    );
 }
 
 export default App;
